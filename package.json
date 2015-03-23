@@ -1,0 +1,12 @@
+{
+  "name": "webhooks-demo",
+  "description": "Webhooks Demo",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "colors": "^1.0.3",
+    "rest-handler": "^1.2.11",
+    "rest-options-parser": "^2.0.2"
+  },
+  "main": "server.js"
+}
