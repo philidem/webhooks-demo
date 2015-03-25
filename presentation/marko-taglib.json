@@ -1,0 +1,6 @@
+{
+    "tags-dir": {
+        "path": "./components",
+        "prefix": "app-"
+    }
+}

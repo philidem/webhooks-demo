@@ -1,0 +1,8 @@
+{
+    "renderer": "./index",
+    "preserveWhitespace": true,
+    "attributes": {
+        "lang": "string",
+        "wrap": "boolean"
+    }
+}

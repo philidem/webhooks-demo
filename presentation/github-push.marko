@@ -1,0 +1,16 @@
+<h3>PUSH to ${data.repository.full_name}</h3>
+<for each="commit in data.commits" status-var="status">
+    <h4><a href="${commit.url}">Commit #$!{commit.id}</a></h4>
+    <table>
+        <tbody>
+            <tr>
+                <th>Author</th>
+                <td>${commit.author.name}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>${commit.message}</td>
+            </tr>
+        </tbody>
+    </table>
+</for>

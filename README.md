@@ -1,4 +1,4 @@
-# Webhooks
+# Webhooks Demo
 
 ## Prerequisites
 
@@ -24,6 +24,12 @@ Since the `webhooks-demo` server starts on port `8080` locally, start
 ngrok 8080
 ```
 
-## Configure GitHub to Send Webhooks
+## Launch Webhooks Demo Server
+```bash
+node server.js
+```
 
-![GitHub Webhooks & Service](github-webhooks.png?raw=true "Optional Title")
+## Open Webhooks Presentation
+```
+http://localhost:8080/presentation/
+```

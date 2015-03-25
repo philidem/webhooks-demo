@@ -1,0 +1,365 @@
+<optimizer-page package-path="./optimizer.json" />
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>${data.title}</title>
+
+    <optimizer-head/>
+</head>
+
+<body class="list">
+    <!--
+	Debug class on <body> enables
+	cyan grid on slides
+	-->
+    <header class="caption">
+        <h1>${data.title}</h1>
+        <p><a href="https://github.com/philidem">Phillip Gates-Idem</a>, Interactive Intelligence Inc.</p>
+    </header>
+
+    <section class="slide">
+        <h2>${data.title}</h2>
+        <div>
+            <optimizer-img src="src/assets/phil-gates-idem.jpg" width="240" height="240" class="presenter-photo" />
+            <app-markdown>
+            **Presenter:** Phillip Gates-Idem
+
+            In this talk we talk about the advantages and disadvantages of
+            integrating with other products via webhooks.
+
+            Consider producing and consuming webhooks in your own product
+            to provide more value to your end-users.
+            </app-markdown>
+
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>About Phillip Gates-Idem</h2>
+        <div>
+            <optimizer-img src="src/assets/logo-inin.svg" width="350" height="45" />
+            <app-markdown>
+            **Lead Software Engineer**, Node.js and Front-end Technologies
+
+            - [github.com/philidem](https://github.com/philidem):
+            - [Optimizer](https://github.com/raptorjs/optimizer): bundling of JavaScript, CSS, and other assets
+            - [Marko](https://github.com/raptorjs/marko): high performance and streaming template engine for browser and server
+            - [Marko Widgets](https://github.com/raptorjs/marko-widgets): render widgets using Marko
+            - [Node REST Handler](https://github.com/philidem/node-rest-handler): request handler with support for route metadata
+            - [Typed Model](https://github.com/philidem/typed-model): provides models, schema validation, and automatic type coercion
+            for use in browser or server
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Interactive Intelligence</h2>
+        <div>
+            <optimizer-img src="src/assets/logo-inin.svg" width="350" height="45" class="inin-logo" />
+            <app-markdown>
+            http://www.inin.com/
+
+            Check out [PureCloud Collaborate](http://www.inin.com/solutions/Pages/Collaborate.aspx)!
+            Free text, voice, and video chat for your team.
+            </app-markdown>
+            <optimizer-img src="src/assets/purecloud-collaborate.png" width="1024" height="369" class="purecloud-collaborate-image" />
+        </div>
+
+    </section>
+
+
+    <section class="slide">
+        <h2>${data.title}</h2>
+        <div>
+            <p>
+                <blockquote>Don't call me, I'll call you</blockquote> with HTTP Push Notifications.
+            </p>
+            <app-markdown>
+            - Many products provide ways to register URL endpoints that will
+            be notified when certain events happen. Good for low volume
+            or sporadic events.
+            - For high-volume events consider using a streaming mechanism
+            (see Twitter Steams API for example)
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Example Use Case</h2>
+        <div>
+            <app-markdown>
+            - When Jenkins build job completes, send message to chat room.
+            - When ZenDesk ticket is created, create task in your own project
+            management service.
+            - When order is received, send email with download instructions
+            to customer.
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Small Sample of Webhook Providers</h2>
+        <div>
+            <app-markdown>
+            - GitHub
+            - JIRA
+            - Bitbucket
+            - ZenDesk
+            - PagerDuty
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Tools</h2>
+        <div>
+            <app-markdown>
+            - [ngrok](https://ngrok.com/): Expose a local web server to the internet
+            - [RequestBin](http://requestb.in/): Get a unique URL for monitoring HTTP requests
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>GitHub Demo</h2>
+        <div>
+            <app-markdown>
+            **We'll demonstrate the following:**
+            - Configure your GitHub repo to send webhook notifications
+            - Launch local Node.js server to receive webhook notifications
+            - Use `ngrok` to make  your local server publicly addressable
+            - Trigger events in GitHub and see the notifications
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>GitHub Repo Settings</h2>
+        <div>
+            <optimizer-img src="src/assets/github-webhooks.png" width="602" height="550">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Listening for GitHub Notifications...</h2>
+        <div>
+            <div id="githubNotifications"></div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Server-side Route</h2>
+        <div style="font-size: 65%;">
+            <app-markdown>
+            ```javascript
+            restHandler.addRoute({
+                method: '*',
+                path: '/webhook/github',
+                options: {
+                    payload: {
+                        source: 'body',
+                        type: 'object'
+                    },
+                    rawPayload: {
+                        source: 'body',
+                        type: 'buffer'
+                    },
+                    headers: {
+                        source: 'request',
+                        type: 'object'
+                    }
+                },
+
+                handler: function(rest) {
+                    var options = rest.options;
+                    var payload = options.payload;
+                    var rawPayload = options.rawPayload;
+                    var headers = options.headers;
+                    // Do something with the payload here
+                    rest.send(200);
+                }
+            });
+            ```
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Best Practices for Consuming Webhooks</h2>
+        <div>
+            <app-markdown>
+            - Validate signatures (if available)
+            - Validate source IP address (if applicable)
+            - After basic validation, acknowledge request with `200 OK`
+            - Disgard notifications with duplicate ID
+            - If you cannot trust message then send request to originating API to get data
+            - Put unique token in URL
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Put Unique Token in Webhook URL</h2>
+        <div>
+            <app-markdown>
+            - Ideally, the webhook URL that you provide to a third-party product
+            should contain a unique token.
+            - For example: `http://www.mycompany.com/webhook/:token`
+            - The `:token` should be used to uniquely identify that instance
+            of the installed webhook notification URL. If the third-party
+            product doesn't sign messages, then invalidating this token will be
+            a necessary action for handling a compromised URL.
+            - The token is also a convenient way to indirectly associate a webhook
+            notification with extra metadata from your own system. For example,
+            the token could be indirectly associated with a particular end-user.
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Automating Configuration of Webhook</h2>
+        <div>
+            <app-markdown>
+            - Every service is different but consider using API instead of UI
+            of other product to register webhook notification URL.
+            - Might require OAuth flow so that your application can be granted
+            access to the other product's API.
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Validating Signatures</h2>
+        <div>
+            <app-markdown>
+            ```javascript
+            var signature = require('crypto')
+                .createHmac(algorithm, secret)
+                .update(buffer)
+                .digest('hex');
+            ```
+
+            - Signature might include algorithm (GitHub Example: `"sha1=b66a945d175a4580a9f5beaae7ee1ecaae2cb1f2"`)
+            which means you should split on the `"="`
+            - `secret` is pre-shared
+            - `buffer` should be the raw `Buffer` object read from the request body
+            before decompressing and parsing
+            (be aware of middleware that might be reading the raw body before your handler!)
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>GitHub Signature Example</h2>
+        <div>
+            <app-markdown>
+            **Request headers:**
+            ```json
+            {
+                "host": "5b3c48c0.ngrok.com",
+                "x-real-ip": "192.30.252.34",
+                "x-forwarded-proto": "http",
+                "connection": "close",
+                "content-length": "6130",
+                "accept": "*/*",
+                "user-agent": "GitHub-Hookshot/c703d31",
+                "x-github-event": "push",
+                "x-github-delivery": "64f48080-d305-11e4-8929-74778fb1d7ee",
+                "content-type": "application/json",
+                "x-hub-signature": "sha1=b96f6ad6d5e3a16f4d68800f66d6b6abdcb41eea"
+            }
+            ```
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Durable Handling of Webhooks</h2>
+        <div>
+            <app-markdown>
+            - Consider using durable queue to offload handling of webhook payloads to workers
+            - Can be used to minimize risk of losing notifications
+            - A durable queue will persist messages until they are properly consumed.
+            - Example Durable Queues:
+                - Amazon SQS
+                - RabbitMQ
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Durable Handling of Webhooks</h2>
+        <div>
+            <optimizer-img src="src/assets/webhook-handling.svg" width="660" height="450">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Best Practices for Producing Webhook Notifications</h2>
+        <div>
+            <app-markdown>
+            - Sign your messages! It's simple and helps resolve some of the
+            trust concerns.
+            - Response status code in the 200 range should acknowledge receipt of notification
+            - Redeliver failed webhook notifications at predictable interval and for predictable duration
+            - Nice-to-have: Allow manual redelivery of webhook via admin console
+              (see GitHub implementation)
+            - Provide unique IDs for every outgoing notification (do not create
+            new ID if redelivering notification)
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Copy GitHub</h2>
+        <div>
+            <app-markdown>
+            - If you're planning on producing webhooks in your own product,
+            take a look at GitHub's implementation.
+            - It's one of the few that provides:
+                - Right level of detail in the payload
+                - Message signatures
+                - Support for redelivery
+                - Clear designation of notification type via request header
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Webhooks in a Distributed System</h2>
+        <div>
+            <app-markdown>
+            - If you have a very distributed system consider implementing
+            a pubsub service so that a webhook notifier can subscribe to
+            various topics.
+            - The webhook notifier could put the outgoing notifications
+            into a durable queue.
+            - Various worker nodes could read from durable outgoing queue
+            and send the appropriate notifications to registered webhook listeners.
+            </app-markdown>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Now start using webhooks!</h2>
+        <div>
+            <app-markdown>
+            - Source code for this presentation and demo is here:
+            https://github.com/philidem/webhooks-demo
+            </app-markdown>
+        </div>
+    </section>
+
+    <div class="progress"><div></div></div>
+
+    <optimizer-body/>
+    <init-widgets />
+    <browser-refresh enabled="true" />
+</body>
+
+</html>

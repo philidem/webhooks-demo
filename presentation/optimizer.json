@@ -1,0 +1,9 @@
+{
+    "dependencies": [
+        "./shower-theme/styles/screen.css",
+        "shower-core/shower.min.js",
+        "highlight.js/styles/default.css",
+        "./style.less",
+        "require-run: ./index"
+    ]
+}
