@@ -42,7 +42,7 @@ the signature by calculating our own signature using the same pre-shared
 secret.
 */
 restHandler.addRoute({
-    method: '*',
+    method: 'POST',
     path: '/webhook/github',
 
     options: {
