@@ -1,6 +1,6 @@
 window.global = window;
 
-var socket = require('socket.io-client')(':8080/');
+var socket = require('socket.io-client')();
 //var markoRenderer = require('marko')
 
 function appendNotification(html) {

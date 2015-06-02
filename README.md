@@ -18,10 +18,10 @@ WebHooks endpoints need to be publicly addressable so when running
 your service locally, you need to create a tunnel through a publicly
 addressable proxy. [ngrok](https://ngrok.com/) is a tool that makes this very easy.
 
-Since the `webhooks-demo` server starts on port `8080` locally, start
+Since the `webhooks-demo` server starts on port `8888` locally, start
 `ngrok` with this command:
 ```bash
-ngrok 8080
+ngrok 8888
 ```
 
 ## Launch Webhooks Demo Server
@@ -31,5 +31,5 @@ node server.js
 
 ## Open Webhooks Presentation
 ```
-http://localhost:8080/presentation/
+http://localhost:8888/presentation/
 ```

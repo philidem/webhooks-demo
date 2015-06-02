@@ -1,4 +1,4 @@
-<optimizer-page package-path="./optimizer.json" />
+<lasso-page package-path="./browser.json" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=792, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>${data.title}</title>
+    <title>${data.route.title}</title>
 
-    <optimizer-head/>
+    <lasso-head/>
 </head>
 
 <body class="list">
@@ -18,14 +18,14 @@
 	cyan grid on slides
 	-->
     <header class="caption">
-        <h1>${data.title}</h1>
+        <h1>${data.route.title}</h1>
         <p><a href="https://github.com/philidem">Phillip Gates-Idem</a>, Interactive Intelligence Inc.</p>
     </header>
 
     <section class="slide">
-        <h2>${data.title}</h2>
+        <h2>${data.route.title}</h2>
         <div>
-            <optimizer-img src="src/assets/phil-gates-idem.jpg" width="240" height="240" class="presenter-photo" />
+            <lasso-img src="src/assets/phil-gates-idem.jpg" width="240" height="240" class="presenter-photo" />
             <app-markdown>
             **Presenter:** Phillip Gates-Idem
 
@@ -42,12 +42,12 @@
     <section class="slide">
         <h2>About Phillip Gates-Idem</h2>
         <div>
-            <optimizer-img src="src/assets/logo-inin.svg" width="350" height="45" />
+            <lasso-img src="src/assets/logo-inin.svg" width="350" height="45" />
             <app-markdown>
             **Lead Software Engineer**, Node.js and Front-end Technologies
 
             - [github.com/philidem](https://github.com/philidem):
-            - [Optimizer](https://github.com/raptorjs/optimizer): bundling of JavaScript, CSS, and other assets
+            - [Lasso](https://github.com/lasso-js/lasso): bundling of JavaScript, CSS, and other assets
             - [Marko](https://github.com/raptorjs/marko): high performance and streaming template engine for browser and server
             - [Marko Widgets](https://github.com/raptorjs/marko-widgets): render widgets using Marko
             - [Node REST Handler](https://github.com/philidem/node-rest-handler): request handler with support for route metadata
@@ -60,21 +60,21 @@
     <section class="slide">
         <h2>Interactive Intelligence</h2>
         <div>
-            <optimizer-img src="src/assets/logo-inin.svg" width="350" height="45" class="inin-logo" />
+            <lasso-img src="src/assets/logo-inin.svg" width="350" height="45" class="inin-logo" />
             <app-markdown>
             http://www.inin.com/
 
             Check out [PureCloud Collaborate](http://www.inin.com/solutions/Pages/Collaborate.aspx)!
             Free text, voice, and video chat for your team.
             </app-markdown>
-            <optimizer-img src="src/assets/purecloud-collaborate.png" width="1024" height="369" class="purecloud-collaborate-image" />
+            <lasso-img src="src/assets/purecloud-collaborate.png" width="1024" height="369" class="purecloud-collaborate-image" />
         </div>
 
     </section>
 
 
     <section class="slide">
-        <h2>${data.title}</h2>
+        <h2>${data.route.title}</h2>
         <div>
             <p>
                 <blockquote>Don't call me, I'll call you</blockquote> with HTTP Push Notifications.
@@ -141,7 +141,7 @@
     <section class="slide">
         <h2>GitHub Repo Settings</h2>
         <div>
-            <optimizer-img src="src/assets/github-webhooks.png" width="602" height="550">
+            <lasso-img src="src/assets/github-webhooks.png" width="602" height="550">
         </div>
     </section>
 
@@ -295,7 +295,7 @@
     <section class="slide">
         <h2>Durable Handling of Webhooks</h2>
         <div>
-            <optimizer-img src="src/assets/webhook-handling.svg" width="660" height="450">
+            <lasso-img src="src/assets/webhook-handling.svg" width="660" height="450">
         </div>
     </section>
 
@@ -357,7 +357,7 @@
 
     <div class="progress"><div></div></div>
 
-    <optimizer-body/>
+    <lasso-body/>
     <init-widgets />
     <browser-refresh enabled="true" />
 </body>

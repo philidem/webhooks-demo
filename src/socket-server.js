@@ -1,5 +1,4 @@
-var server = require('../server');
-var io = module.exports = require('socket.io')(server);
+var io;
 
 var sockets = [];
 
@@ -10,17 +9,22 @@ exports.emit = function(eventName, data) {
     console.log('Emitted ' + eventName);
 };
 
-io.on('connection', function(socket) {
+exports.configure = function(server) {
+    io = require('socket.io')(server);
 
-    console.log('Client connected via socket.io');
+    io.on('connection', function(socket) {
+        console.log('Client connected via socket.io');
 
-    sockets.push(socket);
+        sockets.push(socket);
 
-	socket.on('disconnect', function() {
-        for (var i = 0; i < sockets.length; i++) {
-            if (sockets[i] === socket) {
-                sockets.splice(i, 1);
+    	socket.on('disconnect', function() {
+            for (var i = 0; i < sockets.length; i++) {
+                if (sockets[i] === socket) {
+                    sockets.splice(i, 1);
+                }
             }
-        }
+        });
     });
-});
+
+    console.log('Configured socket.io server');
+};
