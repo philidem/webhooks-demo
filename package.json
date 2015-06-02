@@ -5,7 +5,6 @@
   "private": true,
   "dependencies": {
     "app-module-path": "^1.0.1",
-    "browser-refresh-taglib": "^1.0.3",
     "colors": "^1.0.3",
     "highlight.js": "^8.4.0",
     "lasso-tools": "^0.1.6",
@@ -13,13 +12,10 @@
     "marko": "^2.5.1",
     "marko-widgets": "^4.0.1",
     "raptor-util": "^1.0.9",
-    "rest-handler": "^1.2.11",
     "rest-options-parser": "^2.0.2",
-    "send": "^0.12.2",
     "shower-core": "^1.0.7",
     "socket.io": "^1.3.5",
-    "socket.io-client": "^1.3.5",
-    "url-util": "^1.2.10"
+    "socket.io-client": "^1.3.5"
   },
   "main": "server.js",
   "devDependencies": {
